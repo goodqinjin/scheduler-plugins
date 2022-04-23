@@ -8,7 +8,7 @@ testbin/*
 hack/tools/bin/*
 
 # used for the code generators only
-/vendor/
+#/vendor/
 
 # macOS
 .DS_Store
