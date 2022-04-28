@@ -21,7 +21,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/paypal/load-watcher/pkg/watcher"
+	"sigs.k8s.io/scheduler-plugins/pkg/nodetemperature/metricswatcher"
 	loadwatcherapi "github.com/paypal/load-watcher/pkg/watcher/api"
 
 	"k8s.io/apimachinery/pkg/runtime"

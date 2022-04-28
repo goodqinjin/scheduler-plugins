@@ -26,7 +26,6 @@ import (
 	"math"
 
 	"github.com/paypal/load-watcher/pkg/watcher"
-
 	v1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/runtime"
 	utilruntime "k8s.io/apimachinery/pkg/util/runtime"

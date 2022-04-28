@@ -43,6 +43,7 @@ func addKnownTypes(scheme *runtime.Scheme) error {
 		&TargetLoadPackingArgs{},
 		&LoadVariationRiskBalancingArgs{},
 		&NodeResourceTopologyMatchArgs{},
+		&NodeTemperatureArgs{},
 	)
 	return nil
 }

@@ -14,6 +14,9 @@
 ARG ARCH
 FROM golang:1.15.10
 
+RUN go env -w GOPROXY="https://goproxy.cn" \
+    && echo "go proxy env $(go env | grep PROXY)"
+
 WORKDIR /go/src/sigs.k8s.io/scheduler-plugins
 COPY . .
 ARG ARCH

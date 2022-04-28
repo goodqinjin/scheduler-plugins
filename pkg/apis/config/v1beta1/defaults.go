@@ -23,7 +23,6 @@ import (
 
 	v1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/api/resource"
-	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	schedulerconfig "k8s.io/kube-scheduler/config/v1"
 
 	pluginConfig "sigs.k8s.io/scheduler-plugins/pkg/apis/config"
@@ -133,30 +132,35 @@ func SetDefaultLoadVariationRiskBalancingArgs(args *LoadVariationRiskBalancingAr
 	}
 }
 
-// SetDefaultsNodeResourceTopologyMatchArgs sets the default parameters for NodeResourceTopologyMatch plugin.
-func SetDefaultsNodeResourceTopologyMatchArgs(obj *NodeResourceTopologyMatchArgs) {
-	if obj.KubeConfigPath == nil {
-		obj.KubeConfigPath = &defaultKubeConfigPath
-	}
-	if len(obj.Namespaces) == 0 {
-		obj.Namespaces = []string{metav1.NamespaceDefault}
-	}
+//// SetDefaultsNodeResourceTopologyMatchArgs sets the default parameters for NodeResourceTopologyMatch plugin.
+//func SetDefaultsNodeResourceTopologyMatchArgs(obj *NodeResourceTopologyMatchArgs) {
+//	if obj.KubeConfigPath == nil {
+//		obj.KubeConfigPath = &defaultKubeConfigPath
+//	}
+//	if len(obj.Namespaces) == 0 {
+//		obj.Namespaces = []string{metav1.NamespaceDefault}
+//	}
+//
+//	if obj.ScoringStrategy == nil {
+//		obj.ScoringStrategy = &ScoringStrategy{
+//			Type:      LeastAllocated,
+//			Resources: defaultResourceSpec,
+//		}
+//	}
+//
+//	if len(obj.ScoringStrategy.Resources) == 0 {
+//		// If no resources specified, use the default set.
+//		obj.ScoringStrategy.Resources = append(obj.ScoringStrategy.Resources, defaultResourceSpec...)
+//	}
+//
+//	for i := range obj.ScoringStrategy.Resources {
+//		if obj.ScoringStrategy.Resources[i].Weight == 0 {
+//			obj.ScoringStrategy.Resources[i].Weight = 1
+//		}
+//	}
+//}
 
-	if obj.ScoringStrategy == nil {
-		obj.ScoringStrategy = &ScoringStrategy{
-			Type:      LeastAllocated,
-			Resources: defaultResourceSpec,
-		}
-	}
+// SetDefaultNodeTemperatureArgs sets the default parameters for the NodeTemperature plugin
+func SetDefaultNodeTemperatureArgs(args *NodeTemperatureArgs) {
 
-	if len(obj.ScoringStrategy.Resources) == 0 {
-		// If no resources specified, use the default set.
-		obj.ScoringStrategy.Resources = append(obj.ScoringStrategy.Resources, defaultResourceSpec...)
-	}
-
-	for i := range obj.ScoringStrategy.Resources {
-		if obj.ScoringStrategy.Resources[i].Weight == 0 {
-			obj.ScoringStrategy.Resources[i].Weight = 1
-		}
-	}
 }

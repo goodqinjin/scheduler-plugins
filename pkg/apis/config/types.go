@@ -168,3 +168,13 @@ type NodeResourceTopologyMatchArgs struct {
 	// ScoringStrategy a scoring model that determine how the plugin will score the nodes.
 	ScoringStrategy ScoringStrategy
 }
+
+// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+
+// NodeTemperatureArgs holds arguments used to configure NodeTemperature plugin.
+type NodeTemperatureArgs struct {
+	metav1.TypeMeta
+
+	// Metric Provider to use when using load watcher as a library
+	MetricProvider MetricProviderSpec
+}

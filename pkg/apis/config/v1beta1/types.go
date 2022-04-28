@@ -157,5 +157,16 @@ type NodeResourceTopologyMatchArgs struct {
 	KubeConfigPath  *string          `json:"kubeconfigpath,omitempty"`
 	MasterOverride  *string          `json:"masteroverride,omitempty"`
 	Namespaces      []string         `json:"namespaces,omitempty"`
-	ScoringStrategy *ScoringStrategy `json:"scoringStrategy,omitempty"`
+	ScoringStrategy ScoringStrategy `json:"scoringStrategy,omitempty"`
+}
+
+// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+// +k8s:defaulter-gen=true
+
+// NodeTemperatureArgs holds arguments used to configure NodeTemperature plugin.
+type NodeTemperatureArgs struct {
+	metav1.TypeMeta `json:",inline"`
+
+	// Specify the metric provider type, address and token using MetricProviderSpec
+	MetricProvider MetricProviderSpec `json:"metricProvider,omitempty"`
 }
