@@ -244,7 +244,51 @@ func (in *NodeResourcesAllocatableArgs) DeepCopyObject() runtime.Object {
 func (in *NodeTemperatureArgs) DeepCopyInto(out *NodeTemperatureArgs) {
 	*out = *in
 	out.TypeMeta = in.TypeMeta
-	in.MetricProvider.DeepCopyInto(&out.MetricProvider)
+	if in.DefaultDtuTemperature != nil {
+		in, out := &in.DefaultDtuTemperature, &out.DefaultDtuTemperature
+		*out = new(float64)
+		**out = **in
+	}
+	if in.MaxDtuTemperature != nil {
+		in, out := &in.MaxDtuTemperature, &out.MaxDtuTemperature
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DefaultNodeTemperature != nil {
+		in, out := &in.DefaultNodeTemperature, &out.DefaultNodeTemperature
+		*out = new(float64)
+		**out = **in
+	}
+	if in.MaxNodeTemperature != nil {
+		in, out := &in.MaxNodeTemperature, &out.MaxNodeTemperature
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DefaultRackTemperature != nil {
+		in, out := &in.DefaultRackTemperature, &out.DefaultRackTemperature
+		*out = new(float64)
+		**out = **in
+	}
+	if in.MaxRackTemperature != nil {
+		in, out := &in.MaxRackTemperature, &out.MaxRackTemperature
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DtuTemperatureWeight != nil {
+		in, out := &in.DtuTemperatureWeight, &out.DtuTemperatureWeight
+		*out = new(float64)
+		**out = **in
+	}
+	if in.NodeTemperatureWeight != nil {
+		in, out := &in.NodeTemperatureWeight, &out.NodeTemperatureWeight
+		*out = new(float64)
+		**out = **in
+	}
+	if in.RackTemperatureWeight != nil {
+		in, out := &in.RackTemperatureWeight, &out.RackTemperatureWeight
+		*out = new(float64)
+		**out = **in
+	}
 	return
 }
 

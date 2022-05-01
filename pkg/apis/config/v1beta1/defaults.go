@@ -72,6 +72,18 @@ var (
 		{Name: string(v1.ResourceCPU), Weight: 1},
 		{Name: string(v1.ResourceMemory), Weight: 1},
 	}
+
+	defaultDtuTemperature = 33.00
+	maxDtuTemperature = 120.00
+	dtuTemperatureWeight = 1.00
+
+	defaultNodeTemperature = 33.00
+	maxNodeTemperature = 120.00
+	nodeTemperatureWeight = 1.00
+
+	defaultRackTemperature = 33.00
+	maxRackTemperature = 120.00
+	rackTemperatureWeight = 1.00;
 )
 
 // SetDefaultsCoschedulingArgs sets the default parameters for Coscheduling plugin.
@@ -162,5 +174,33 @@ func SetDefaultLoadVariationRiskBalancingArgs(args *LoadVariationRiskBalancingAr
 
 // SetDefaultNodeTemperatureArgs sets the default parameters for the NodeTemperature plugin
 func SetDefaultNodeTemperatureArgs(args *NodeTemperatureArgs) {
+	if args.DefaultDtuTemperature == nil || *args.DefaultDtuTemperature < 1 {
+		args.DefaultDtuTemperature = &defaultDtuTemperature
+	}
+	if args.MaxDtuTemperature == nil || *args.MaxDtuTemperature < 1{
+		args.MaxDtuTemperature = &maxDtuTemperature
+	}
+	if args.DtuTemperatureWeight == nil || *args.DtuTemperatureWeight <= 0 {
+		args.DtuTemperatureWeight = &dtuTemperatureWeight
+	}
 
+	if args.DefaultNodeTemperature == nil || *args.DefaultNodeTemperature < 1 {
+		args.DefaultNodeTemperature = &defaultNodeTemperature
+	}
+	if args.MaxNodeTemperature == nil || *args.MaxNodeTemperature < 1 {
+		args.MaxNodeTemperature = &maxNodeTemperature
+	}
+	if args.NodeTemperatureWeight == nil || *args.NodeTemperatureWeight <= 0 {
+		args.NodeTemperatureWeight = &nodeTemperatureWeight
+	}
+
+	if args.DefaultRackTemperature == nil || *args.DefaultRackTemperature < 1{
+		args.DefaultRackTemperature = &defaultRackTemperature
+	}
+	if args.MaxRackTemperature == nil || *args.MaxRackTemperature < 1 {
+		args.MaxRackTemperature = &maxRackTemperature
+	}
+	if args.RackTemperatureWeight == nil || *args.RackTemperatureWeight <= 0 {
+		args.RackTemperatureWeight = &rackTemperatureWeight
+	}
 }

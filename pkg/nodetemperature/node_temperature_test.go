@@ -56,11 +56,7 @@ func (f *testSharedLister) Get(nodeName string) (*framework.NodeInfo, error) {
 
 func TestNew(t *testing.T) {
 	nodeTemperatureArgs := pluginConfig.NodeTemperatureArgs{
-		MetricProvider: pluginConfig.MetricProviderSpec{
-			Type: pluginConfig.KubernetesMetricsServer,
-			//Address: "",
-			//Token:   "",
-		},
+
 	}
 	nodeTemperatureConfig := config.PluginConfig{
 		Name: Name,

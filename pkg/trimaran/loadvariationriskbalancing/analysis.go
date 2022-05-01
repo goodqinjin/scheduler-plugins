@@ -19,8 +19,7 @@ package loadvariationriskbalancing
 import (
 	"math"
 
-	"sigs.k8s.io/scheduler-plugins/pkg/nodetemperature/metricswatcher"
-
+	"github.com/paypal/load-watcher/pkg/watcher"
 	v1 "k8s.io/api/core/v1"
 	"k8s.io/klog/v2"
 	"k8s.io/kubernetes/pkg/scheduler/framework"

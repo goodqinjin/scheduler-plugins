@@ -184,7 +184,6 @@ func (in *NodeResourcesAllocatableArgs) DeepCopyObject() runtime.Object {
 func (in *NodeTemperatureArgs) DeepCopyInto(out *NodeTemperatureArgs) {
 	*out = *in
 	out.TypeMeta = in.TypeMeta
-	out.MetricProvider = in.MetricProvider
 	return
 }
 

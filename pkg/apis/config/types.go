@@ -175,6 +175,13 @@ type NodeResourceTopologyMatchArgs struct {
 type NodeTemperatureArgs struct {
 	metav1.TypeMeta
 
-	// Metric Provider to use when using load watcher as a library
-	MetricProvider MetricProviderSpec
+	DefaultDtuTemperature  float64
+	MaxDtuTemperature      float64
+	DefaultNodeTemperature float64
+	MaxNodeTemperature     float64
+	DefaultRackTemperature float64
+	MaxRackTemperature     float64
+	DtuTemperatureWeight   float64
+	NodeTemperatureWeight  float64
+	RackTemperatureWeight  float64
 }

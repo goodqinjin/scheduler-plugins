@@ -154,9 +154,9 @@ type ScoringStrategy struct {
 type NodeResourceTopologyMatchArgs struct {
 	metav1.TypeMeta `json:",inline"`
 
-	KubeConfigPath  *string          `json:"kubeconfigpath,omitempty"`
-	MasterOverride  *string          `json:"masteroverride,omitempty"`
-	Namespaces      []string         `json:"namespaces,omitempty"`
+	KubeConfigPath  *string         `json:"kubeconfigpath,omitempty"`
+	MasterOverride  *string         `json:"masteroverride,omitempty"`
+	Namespaces      []string        `json:"namespaces,omitempty"`
 	ScoringStrategy ScoringStrategy `json:"scoringStrategy,omitempty"`
 }
 
@@ -167,6 +167,13 @@ type NodeResourceTopologyMatchArgs struct {
 type NodeTemperatureArgs struct {
 	metav1.TypeMeta `json:",inline"`
 
-	// Specify the metric provider type, address and token using MetricProviderSpec
-	MetricProvider MetricProviderSpec `json:"metricProvider,omitempty"`
+	DefaultDtuTemperature  *float64 `json:"defaultDtuTemperature"`
+	MaxDtuTemperature      *float64 `json:"maxDtuTemperature"`
+	DefaultNodeTemperature *float64 `json:"defaultNodeTemperature"`
+	MaxNodeTemperature     *float64 `json:"maxNodeTemperature"`
+	DefaultRackTemperature *float64 `json:"defaultRackTemperature"`
+	MaxRackTemperature     *float64 `json:"maxRackTemperature"`
+	DtuTemperatureWeight   *float64 `json:"dtuTemperatureWeight"`
+	NodeTemperatureWeight  *float64 `json:"nodeTemperatureWeight"`
+	RackTemperatureWeight  *float64 `json:"rackTemperatureWeight"`
 }

@@ -333,7 +333,31 @@ func Convert_config_NodeResourcesAllocatableArgs_To_v1beta1_NodeResourcesAllocat
 }
 
 func autoConvert_v1beta1_NodeTemperatureArgs_To_config_NodeTemperatureArgs(in *NodeTemperatureArgs, out *config.NodeTemperatureArgs, s conversion.Scope) error {
-	if err := Convert_v1beta1_MetricProviderSpec_To_config_MetricProviderSpec(&in.MetricProvider, &out.MetricProvider, s); err != nil {
+	if err := v1.Convert_Pointer_float64_To_float64(&in.DefaultDtuTemperature, &out.DefaultDtuTemperature, s); err != nil {
+		return err
+	}
+	if err := v1.Convert_Pointer_float64_To_float64(&in.MaxDtuTemperature, &out.MaxDtuTemperature, s); err != nil {
+		return err
+	}
+	if err := v1.Convert_Pointer_float64_To_float64(&in.DefaultNodeTemperature, &out.DefaultNodeTemperature, s); err != nil {
+		return err
+	}
+	if err := v1.Convert_Pointer_float64_To_float64(&in.MaxNodeTemperature, &out.MaxNodeTemperature, s); err != nil {
+		return err
+	}
+	if err := v1.Convert_Pointer_float64_To_float64(&in.DefaultRackTemperature, &out.DefaultRackTemperature, s); err != nil {
+		return err
+	}
+	if err := v1.Convert_Pointer_float64_To_float64(&in.MaxRackTemperature, &out.MaxRackTemperature, s); err != nil {
+		return err
+	}
+	if err := v1.Convert_Pointer_float64_To_float64(&in.DtuTemperatureWeight, &out.DtuTemperatureWeight, s); err != nil {
+		return err
+	}
+	if err := v1.Convert_Pointer_float64_To_float64(&in.NodeTemperatureWeight, &out.NodeTemperatureWeight, s); err != nil {
+		return err
+	}
+	if err := v1.Convert_Pointer_float64_To_float64(&in.RackTemperatureWeight, &out.RackTemperatureWeight, s); err != nil {
 		return err
 	}
 	return nil
@@ -345,7 +369,31 @@ func Convert_v1beta1_NodeTemperatureArgs_To_config_NodeTemperatureArgs(in *NodeT
 }
 
 func autoConvert_config_NodeTemperatureArgs_To_v1beta1_NodeTemperatureArgs(in *config.NodeTemperatureArgs, out *NodeTemperatureArgs, s conversion.Scope) error {
-	if err := Convert_config_MetricProviderSpec_To_v1beta1_MetricProviderSpec(&in.MetricProvider, &out.MetricProvider, s); err != nil {
+	if err := v1.Convert_float64_To_Pointer_float64(&in.DefaultDtuTemperature, &out.DefaultDtuTemperature, s); err != nil {
+		return err
+	}
+	if err := v1.Convert_float64_To_Pointer_float64(&in.MaxDtuTemperature, &out.MaxDtuTemperature, s); err != nil {
+		return err
+	}
+	if err := v1.Convert_float64_To_Pointer_float64(&in.DefaultNodeTemperature, &out.DefaultNodeTemperature, s); err != nil {
+		return err
+	}
+	if err := v1.Convert_float64_To_Pointer_float64(&in.MaxNodeTemperature, &out.MaxNodeTemperature, s); err != nil {
+		return err
+	}
+	if err := v1.Convert_float64_To_Pointer_float64(&in.DefaultRackTemperature, &out.DefaultRackTemperature, s); err != nil {
+		return err
+	}
+	if err := v1.Convert_float64_To_Pointer_float64(&in.MaxRackTemperature, &out.MaxRackTemperature, s); err != nil {
+		return err
+	}
+	if err := v1.Convert_float64_To_Pointer_float64(&in.DtuTemperatureWeight, &out.DtuTemperatureWeight, s); err != nil {
+		return err
+	}
+	if err := v1.Convert_float64_To_Pointer_float64(&in.NodeTemperatureWeight, &out.NodeTemperatureWeight, s); err != nil {
+		return err
+	}
+	if err := v1.Convert_float64_To_Pointer_float64(&in.RackTemperatureWeight, &out.RackTemperatureWeight, s); err != nil {
 		return err
 	}
 	return nil
