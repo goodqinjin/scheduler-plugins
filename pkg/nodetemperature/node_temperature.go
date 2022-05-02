@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"strconv"
 
-	log "github.com/sirupsen/logrus"
 	v1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/klog/v2"
@@ -63,7 +62,7 @@ func (nt *NodeTemperature) Score(ctx context.Context,
 	state *framework.CycleState,
 	pod *v1.Pod,
 	nodeName string) (int64, *framework.Status) {
-	klog.Infof("[NodeTemperature] start scoring...")
+	klog.Info("[NodeTemperature] start scoring...")
 
 	nodeInfo, err := nt.handle.SnapshotSharedLister().NodeInfos().Get(nodeName)
 	if err != nil {
@@ -80,7 +79,7 @@ func (nt *NodeTemperature) Score(ctx context.Context,
 			if ok {
 				v, err := strconv.ParseFloat(annoValue, 64)
 				if err != nil {
-					log.Warnf("Parsing annotaion %s value: %v", annoName, err)
+					klog.Warningf("Parsing annotaion %s value: %v", annoName, err)
 				} else {
 					tempValue = v
 				}
