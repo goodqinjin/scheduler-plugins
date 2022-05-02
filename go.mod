@@ -3,11 +3,15 @@ module sigs.k8s.io/scheduler-plugins
 go 1.16
 
 require (
+	github.com/francoispqt/gojay v1.2.13
 	github.com/google/go-cmp v0.5.5
 	github.com/google/uuid v1.1.2
 	github.com/k8stopologyawareschedwg/noderesourcetopology-api v0.0.12
 	github.com/patrickmn/go-cache v2.1.0+incompatible
 	github.com/paypal/load-watcher v0.2.1
+	github.com/prometheus/client_golang v1.11.0
+	github.com/prometheus/common v0.26.0
+	github.com/sirupsen/logrus v1.8.1
 	github.com/spf13/pflag v1.0.5
 	github.com/stretchr/testify v1.7.0
 	gonum.org/v1/gonum v0.6.2
@@ -25,6 +29,7 @@ require (
 	k8s.io/kube-openapi v0.0.0-20211109043538-20434351676c
 	k8s.io/kube-scheduler v0.22.6
 	k8s.io/kubernetes v1.22.6
+	k8s.io/metrics v0.22.6
 	k8s.io/utils v0.0.0-20210819203725-bdf08cb9a70a
 	sigs.k8s.io/yaml v1.2.0
 )

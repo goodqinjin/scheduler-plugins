@@ -33,6 +33,10 @@ type CoschedulingArgs struct {
 	PermitWaitingTimeSeconds *int64 `json:"permitWaitingTimeSeconds,omitempty"`
 	// DeniedPGExpirationTimeSeconds is the expiration time of the denied podgroup store.
 	DeniedPGExpirationTimeSeconds *int64 `json:"deniedPGExpirationTimeSeconds,omitempty"`
+	// KubeMaster is the url of api-server
+	KubeMaster *string `json:"kubeMaster,omitempty"`
+	// KubeConfigPath for scheduler
+	KubeConfigPath *string `json:"kubeConfigPath,omitempty"`
 }
 
 // ModeType is a type "string".
@@ -141,7 +145,9 @@ type ScoringStrategy struct {
 type NodeResourceTopologyMatchArgs struct {
 	metav1.TypeMeta `json:",inline"`
 
-	ScoringStrategy *ScoringStrategy `json:"scoringStrategy,omitempty"`
+	KubeConfigPath  *string         `json:"kubeconfigpath,omitempty"`
+	MasterOverride  *string         `json:"masteroverride,omitempty"`
+	ScoringStrategy ScoringStrategy `json:"scoringStrategy,omitempty"`
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
@@ -149,3 +155,21 @@ type NodeResourceTopologyMatchArgs struct {
 
 // PreemptionTolerationArgs reuses DefaultPluginArgs.
 type PreemptionTolerationArgs schedulerconfigv1beta2.DefaultPreemptionArgs
+
+// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+// +k8s:defaulter-gen=true
+
+// NodeTemperatureArgs holds arguments used to configure NodeTemperature plugin.
+type NodeTemperatureArgs struct {
+	metav1.TypeMeta `json:",inline"`
+
+	DefaultDtuTemperature  *float64 `json:"defaultDtuTemperature"`
+	MaxDtuTemperature      *float64 `json:"maxDtuTemperature"`
+	DefaultNodeTemperature *float64 `json:"defaultNodeTemperature"`
+	MaxNodeTemperature     *float64 `json:"maxNodeTemperature"`
+	DefaultRackTemperature *float64 `json:"defaultRackTemperature"`
+	MaxRackTemperature     *float64 `json:"maxRackTemperature"`
+	DtuTemperatureWeight   *float64 `json:"dtuTemperatureWeight"`
+	NodeTemperatureWeight  *float64 `json:"nodeTemperatureWeight"`
+	RackTemperatureWeight  *float64 `json:"rackTemperatureWeight"`
+}

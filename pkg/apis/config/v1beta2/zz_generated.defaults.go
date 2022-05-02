@@ -45,6 +45,9 @@ func RegisterDefaults(scheme *runtime.Scheme) error {
 	scheme.AddTypeDefaultingFunc(&PreemptionTolerationArgs{}, func(obj interface{}) {
 		SetObjectDefaultsPreemptionTolerationArgs(obj.(*PreemptionTolerationArgs))
 	})
+	scheme.AddTypeDefaultingFunc(&NodeTemperatureArgs{}, func(obj interface{}) {
+		SetObjectDefaultsNodeTemperatureArgs(obj.(*NodeTemperatureArgs))
+	})
 	return nil
 }
 
@@ -70,4 +73,8 @@ func SetObjectDefaultsNodeResourceTopologyMatchArgs(in *NodeResourceTopologyMatc
 
 func SetObjectDefaultsPreemptionTolerationArgs(in *PreemptionTolerationArgs) {
 	SetDefaultsPreemptionTolerationArgs(in)
+}
+
+func SetObjectDefaultsNodeTemperatureArgs(in *NodeTemperatureArgs)  {
+	SetDefaultNodeTemperatureArgs(in)
 }

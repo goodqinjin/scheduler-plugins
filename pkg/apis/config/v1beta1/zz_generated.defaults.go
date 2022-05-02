@@ -42,6 +42,9 @@ func RegisterDefaults(scheme *runtime.Scheme) error {
 	scheme.AddTypeDefaultingFunc(&NodeResourceTopologyMatchArgs{}, func(obj interface{}) {
 		SetObjectDefaultsNodeResourceTopologyMatchArgs(obj.(*NodeResourceTopologyMatchArgs))
 	})
+	scheme.AddTypeDefaultingFunc(&NodeTemperatureArgs{}, func(obj interface{}) {
+		SetObjectDefaultsNodeTemperatureArgs(obj.(*NodeTemperatureArgs))
+	})
 	return nil
 }
 
@@ -63,4 +66,8 @@ func SetObjectDefaultsLoadVariationRiskBalancingArgs(in *LoadVariationRiskBalanc
 
 func SetObjectDefaultsNodeResourceTopologyMatchArgs(in *NodeResourceTopologyMatchArgs) {
 	SetDefaultsNodeResourceTopologyMatchArgs(in)
+}
+
+func SetObjectDefaultsNodeTemperatureArgs(in *NodeTemperatureArgs)  {
+	SetDefaultNodeTemperatureArgs(in)
 }

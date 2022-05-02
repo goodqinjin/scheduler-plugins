@@ -35,6 +35,10 @@ type CoschedulingArgs struct {
 	PermitWaitingTimeSeconds int64
 	// DeniedPGExpirationTimeSeconds is the expiration time of the denied podgroup store.
 	DeniedPGExpirationTimeSeconds int64
+	// KubeMaster is the url of api-server
+	KubeMaster string
+	// KubeConfigPath for scheduler
+	KubeConfigPath string
 }
 
 // ModeType is a "string" type.
@@ -145,6 +149,8 @@ type ScoringStrategy struct {
 type NodeResourceTopologyMatchArgs struct {
 	metav1.TypeMeta
 
+	KubeConfigPath string
+	MasterOverride string
 	// ScoringStrategy a scoring model that determine how the plugin will score the nodes.
 	ScoringStrategy ScoringStrategy
 }
@@ -153,3 +159,20 @@ type NodeResourceTopologyMatchArgs struct {
 
 // PreemptionTolerationArgs reuses DefaultPluginArgs.
 type PreemptionTolerationArgs unversioned.DefaultPreemptionArgs
+
+// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+
+// NodeTemperatureArgs holds arguments used to configure NodeTemperature plugin.
+type NodeTemperatureArgs struct {
+	metav1.TypeMeta
+
+	DefaultDtuTemperature  float64
+	MaxDtuTemperature      float64
+	DefaultNodeTemperature float64
+	MaxNodeTemperature     float64
+	DefaultRackTemperature float64
+	MaxRackTemperature     float64
+	DtuTemperatureWeight   float64
+	NodeTemperatureWeight  float64
+	RackTemperatureWeight  float64
+}
