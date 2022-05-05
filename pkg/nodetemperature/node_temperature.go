@@ -9,10 +9,10 @@ import (
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/klog/v2"
 	"k8s.io/kubernetes/pkg/scheduler/framework"
+
 	"sigs.k8s.io/scheduler-plugins/pkg/apis/config"
 )
 
-var _ = framework.PostFilterPlugin(&NodeTemperature{})
 var _ = framework.ScorePlugin(&NodeTemperature{})
 
 // Name is the name of the plugin used in the Registry and configurations.
@@ -48,13 +48,6 @@ func New(obj runtime.Object, h framework.Handle) (framework.Plugin, error) {
 
 func (nt *NodeTemperature) Name() string {
 	return Name
-}
-
-func (nt *NodeTemperature) PostFilter(ctx context.Context,
-	state *framework.CycleState,
-	pod *v1.Pod,
-	filteredNodeStatusMap framework.NodeToStatusMap) (*framework.PostFilterResult, *framework.Status) {
-	return nil, nil
 }
 
 // Score invoked at the score extension point.
@@ -103,11 +96,11 @@ func (nt *NodeTemperature) Score(ctx context.Context,
 		tempTotalScore += tempScoreFunc(AnnotationDtu6Temperature, nt.args.DtuTemperatureWeight, nt.args.MaxDtuTemperature, nt.args.DefaultDtuTemperature)
 		tempTotalScore += tempScoreFunc(AnnotationDtu7Temperature, nt.args.DtuTemperatureWeight, nt.args.MaxDtuTemperature, nt.args.DefaultDtuTemperature)
 
-		tempTotalMaxScore := nt.args.MaxRackTemperature + nt.args.MaxNodeTemperature + nt.args.MaxDtuTemperature * 8
-		score = 100 - int64(tempTotalScore / tempTotalMaxScore)
+		tempTotalMaxScore := nt.args.MaxRackTemperature + nt.args.MaxNodeTemperature + nt.args.MaxDtuTemperature*8
+		score = 100 - int64(tempTotalScore/tempTotalMaxScore)
 	}
 
-	klog.V(6).InfoS("Score for host", "nodeName", nodeName, "score", score)
+	klog.V(6).InfoS("[NodeTemperature] score for host", "nodeName", nodeName, "score", score)
 	return score, framework.NewStatus(framework.Success, "")
 }
 
